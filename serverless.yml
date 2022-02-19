@@ -10,6 +10,15 @@ custom:
 
 provider:
   name: aws
+  memorySize: 256 # MB
+  timeout: 60 # SEC
+  iamRoleStatements:
+    - Effect: Allow
+      Action: s3:ListBucket
+      Resource: arn:aws:s3:::reddit-post-notifier-${self:custom.stage}
+    - Effect: Allow
+      Action: s3:*Object
+      Resource: arn:aws:s3:::reddit-post-notifier-${self:custom.stage}/*
   runtime: python3.9
   stage: staging # default of no CLI options passed in
   environment:
