@@ -1,0 +1,33 @@
+service: reddit-post-notifier-lambda
+
+frameworkVersion: '3'
+
+custom:
+  stage: ${opt:stage, self:provider.stage}
+  schedule:
+    prod: rate(1 minutes)
+    staging:
+
+provider:
+  name: aws
+  runtime: python3.9
+  stage: staging # default of no CLI options passed in
+  environment:
+    REDDIT_USERNAME: ${ssm:/rpn-reddit-username-${self:custom.stage}}
+    REDDIT_PASSWORD: ${ssm:/rpn-reddit-password-${self:custom.stage}}
+    REDDIT_CLIENT_ID: ${ssm:/rpn-reddit-client-id-${self:custom.stage}}
+    REDDIT_CLIENT_SECRET: ${ssm:/rpn-reddit-client-secret-${self:custom.stage}}
+    EMAIL_SERVER: ${ssm:/rpn-email-server-${self:custom.stage}}
+    EMAIL_USERNAME: ${ssm:/rpn-email-username-${self:custom.stage}}
+    EMAIL_PASSWORD: ${ssm:/rpn-email-password-${self:custom.stage}}
+    APP_DEV_EMAIL: ${ssm:/rpn-dev-email-${self:custom.stage}}
+    APP_DEV_USERNAME: ${ssm:/rpn-dev-username-${self:custom.stage}}
+    APP_FIREBASE_URI: ${ssm:/rpn-firebase-uri${self:custom.stage}}
+    APP_GOOGLE_SERVICE_ACCOUNT: ${ssm:/rpn-google-service-account-${self:custom.stage}}
+    APP_S3_BUCKET_NAME: ${ssm:/rpn-s3-bucket-name-${self:custom.stage}}
+
+functions:
+  redditPostNotifier:
+    handler: src/reddit_post_notifier.execute
+    events:
+      - schedule: ${self:custom.schedule.${self:custom.stage}, null}
