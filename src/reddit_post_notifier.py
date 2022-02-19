@@ -4,14 +4,13 @@ import configparser
 import json
 import logging
 import smtplib
+import sys
 import time
 from email.mime.text import MIMEText
 from os import environ as env
 
+sys.path.insert(0, 'src/vendor')
 import boto3
-# =============================================================================
-# IMPORTS
-# =============================================================================
 import praw
 from google.auth.transport.requests import AuthorizedSession
 from google.oauth2 import service_account
