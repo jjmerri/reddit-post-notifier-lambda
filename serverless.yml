@@ -5,7 +5,7 @@ frameworkVersion: '3'
 custom:
   stage: ${opt:stage, self:provider.stage}
   schedule:
-    prod: rate(1 minutes)
+    prod: rate(1 minute)
     staging:
 
 provider:
