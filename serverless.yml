@@ -22,7 +22,7 @@ provider:
     EMAIL_PASSWORD: ${ssm:/rpn-email-password-${self:custom.stage}}
     APP_DEV_EMAIL: ${ssm:/rpn-dev-email-${self:custom.stage}}
     APP_DEV_USERNAME: ${ssm:/rpn-dev-username-${self:custom.stage}}
-    APP_FIREBASE_URI: ${ssm:/rpn-firebase-uri${self:custom.stage}}
+    APP_FIREBASE_URI: ${ssm:/rpn-firebase-uri-${self:custom.stage}}
     APP_GOOGLE_SERVICE_ACCOUNT: ${ssm:/rpn-google-service-account-${self:custom.stage}}
     APP_S3_BUCKET_NAME: ${ssm:/rpn-s3-bucket-name-${self:custom.stage}}
 
