@@ -10,7 +10,7 @@ custom:
 
 provider:
   name: aws
-  memorySize: 256 # MB
+  memorySize: 128 # MB
   timeout: 60 # SEC
   iamRoleStatements:
     - Effect: Allow
