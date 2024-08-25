@@ -19,7 +19,7 @@ provider:
     - Effect: Allow
       Action: s3:*Object
       Resource: arn:aws:s3:::reddit-post-notifier-${self:custom.stage}/*
-  runtime: python3.9
+  runtime: python3.12
   stage: staging # default of no CLI options passed in
   environment:
     REDDIT_USERNAME: ${ssm:/rpn-reddit-username-${self:custom.stage}}
